@@ -1,0 +1,30 @@
+<p >employee-list</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>D.O.B</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let cus of addList ">
+            <td>{{cus.name | titlecase}}</td>
+            <td>{{cus.gender | uppercase}}</td>
+            <td>{{cus.dob | date: 'mediumDate' }} </td>
+            <td>{{cus.salary | currency:'INR'}}</td>
+            <td>
+                <button  (click)="details(cus)">Details</button>
+                <button (click)="onEdit(cus)"  >Edit</button>
+                <button (click)="onDelete(cus)">Delete</button>
+            </td>
+           
+        </tr>
+
+    </tbody>
+</table>
+<!-- [routerLink]="['details',cus.name]" -->
+<!-- [routerLink]="['edit',cus.name]" -->

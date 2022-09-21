@@ -1,0 +1,73 @@
+<h3>{{title}}</h3>
+
+<div class="border d-inline-block p-5">
+    <form action="" [formGroup]="form">
+        <!-- name  -->
+        <div>
+            <label for="name">Name : &nbsp;</label>
+            <input type="text" formControlName='name' id="name"
+                [ngClass]="{'valid': form.controls['name'].valid,'invalid':(form.controls['name'].invalid && form.controls['name'].touched) || (form.controls['name'].dirty && form.controls['name'].errors?.['required'] )}" required/>
+            <div class="text-danger"
+                *ngIf="form.controls['name'].invalid && (isSubmitted || form.controls['name'].touched || form.controls['name'].dirty)">
+                <div *ngIf="form.controls['name'].errors?.['required']">This Feild is Required</div>
+                <div *ngIf="form.controls['name'].errors?.['minlength'] && form.controls['name'].touched">please enter
+                    minimum 3 char</div>
+            </div>
+        </div>
+
+        <!-- gender  -->
+        <div>
+            <label for="gender">Gender :&nbsp;</label>
+            <input type="text" formControlName="gender"
+            [ngClass]="{'valid': form.controls['gender'].valid,'invalid':(form.controls['gender'].invalid && form.controls['gender'].touched) || (form.controls['gender'].dirty && form.controls['gender'].errors?.['required'] )}"
+            required>
+            <div class="text-danger"
+                *ngIf="form.controls['gender'].invalid && (isSubmitted || form.controls['gender'].touched || form.controls['gender'].dirty)">
+                <div *ngIf="form.controls['gender'].errors?.['required']">This Feild is Required</div>
+                <div *ngIf="form.controls['gender'].errors?.['pattern']">please enter only char</div>
+            </div>
+            <!-- <select name="gender" id="gender" formControlName="gender">
+                <option value="select" disabled selected>Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Others</option>
+            </select> -->
+
+        </div>
+        <!-- DOB  -->
+        <div>
+            <label for="dob">D.O.B :&nbsp;</label>
+            <input type="date" id="dob" formControlName="dob"
+            [ngClass]="{'valid': form.controls['dob'].valid,'invalid':(form.controls['dob'].invalid && form.controls['dob'].touched) || (form.controls['dob'].dirty && form.controls['dob'].errors?.['required'] )}"
+            required >
+            <div class="text-danger"
+             *ngIf="form.controls['dob'].invalid && (isSubmitted || form.controls['dob'].touched || form.controls['dob'].dirty)">
+             <div *ngIf="form.controls['dob'].errors?.['required']">This Feild is Required</div>
+             <!-- <div *ngIf="form.controls['dob'].errors?.['pattern']">The requested format  for dob is dd/mm/yyyy</div> -->
+            </div>
+        </div>
+        <!-- salry  -->
+        <div>
+            <label for="salary">salary :&nbsp;</label>
+            <input type="text" id="salary" formControlName="salary"
+            [ngClass]="{'valid': form.controls['salary'].valid,'invalid':(form.controls['salary'].invalid && form.controls['salary'].touched) || (form.controls['salary'].dirty && form.controls['salary'].errors?.['required'] )}"
+            required>
+            <div class="text-danger"
+             *ngIf="form.controls['salary'].invalid && (isSubmitted || form.controls['salary'].touched || form.controls['salary'].dirty)">
+             <div *ngIf="form.controls['salary'].errors?.['required']">This Feild is Required</div>
+             <div *ngIf="form.controls['salary'].errors?.['pattern']">please enter only number</div>
+            </div>
+        </div>
+        <!-- buttons  -->
+        <div>
+            <button type="" (click)="onReset()" class="me-1">reset</button>
+            <button type="submit" (click)="onSubmit()" class="ms-1">submit</button>
+        </div>
+
+    </form>
+    
+
+</div>
+
+
+<app-employee-list [addList]="customers" (titleChange)="patchValue($event)"></app-employee-list>
